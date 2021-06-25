@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2660580ce246bb65eaae7f934d66fc96",
+    "content-hash": "97446aa4ef28c0bbe40d78ef912b294e",
     "packages": [
         {
             "name": "azjezz/psl",
@@ -461,12 +461,12 @@
             "dist": {
                 "type": "path",
                 "url": "../xml",
-                "reference": "8a525881b5df3534d70a6c3d9a650824cb1f7f41"
+                "reference": "8ff26d4dbae856465aae112b390ca86eaa6304c0"
             },
             "require": {
                 "ext-dom": "*",
                 "php": "^8.0",
-                "veewee/xml": "dev-master"
+                "veewee/xml": "^0.6.1"
             },
             "type": "library",
             "autoload": {
@@ -2721,7 +2721,7 @@
         },
         {
             "name": "veewee/xml",
-            "version": "dev-master",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/veewee/xml.git",
@@ -2748,7 +2748,6 @@
                 "symfony/finder": "^5.2",
                 "veewee/composer-run-parallel": "^1.0.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -2785,7 +2784,7 @@
             ],
             "support": {
                 "issues": "https://github.com/veewee/xml/issues",
-                "source": "https://github.com/veewee/xml/tree/master"
+                "source": "https://github.com/veewee/xml/tree/v0.6.1"
             },
             "funding": [
                 {
@@ -2859,8 +2858,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "php-soap/engine": 20,
-        "php-soap/xml": 20,
-        "veewee/xml": 20
+        "php-soap/xml": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
