@@ -200,19 +200,19 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         $type1 = $types->getIterator()[1];
         $this->assertSame('Store', $type1->getName());
         $this->assertEquals(XsdType::create('Store'), $type1->getXsdType());
-        $this->assertEquals([new Property('Attribute2', XsdType::create('string'))], $type1->getProperties());
+        $this->assertEquals([new Property('Attribute2', XsdType::create('string'))], [...$type1->getProperties()]);
 
         $type2 = $types->getIterator()[1];
         $this->assertSame('Store', $type2->getName());
         $this->assertEquals(XsdType::create('Store'), $type2->getXsdType());
-        $this->assertEquals([new Property('Attribute2', XsdType::create('string'))], $type2->getProperties());
+        $this->assertEquals([new Property('Attribute2', XsdType::create('string'))], [...$type2->getProperties()]);
     }
     
     private function assertMethodExists(MethodCollection $methods, string $name, array $parameters, XsdType $returnType)
     {
         $method = $methods->fetchByName($name);
         $this->assertSame($name, $method->getName());
-        $this->assertEquals($parameters, $method->getParameters());
+        $this->assertEquals($parameters, [...$method->getParameters()]);
         $this->assertEquals($returnType, $method->getReturnType());
     }
 
@@ -221,6 +221,6 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         $type = $types->fetchFirstByName($xsdType->getName());
         $this->assertSame($xsdType->getName(), $type->getName());
         $this->assertEquals($xsdType->getName(), $type->getXsdType());
-        $this->assertEquals($properties, $type->getProperties());
+        $this->assertEquals($properties, [...$type->getProperties()]);
     }
 }
