@@ -1,0 +1,36 @@
+{
+    "name": "php-soap/engine-integration-tests",
+    "description": "Integration tests for SOAP engines",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Soap\\EngineIntegrationTests\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Toon Verwerft",
+            "email": "toonverwerft@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-dom": "*",
+        "phpunit/phpunit": "^9.5.6",
+        "php-soap/engine": "dev-main@dev",
+        "php-soap/xml": "dev-main",
+        "php-vcr/php-vcr": "^1.5.2",
+        "veewee/xml": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../engine"
+        },
+        {
+            "type": "path",
+            "url": "../xml"
+        }
+    ]
+}
