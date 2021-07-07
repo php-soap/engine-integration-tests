@@ -15,15 +15,15 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
 {
     abstract protected function getMetadataProvider(): MetadataProvider;
 
-    /** @test */
-    public function it_can_load_wsdl_methods()
+    
+    public function test_it_can_load_wsdl_methods()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/string.wsdl'));
 
         $metadata = $this->getMetadataProvider()->getMetadata();
         $methods = $metadata->getMethods();
 
-        $this->assertCount(1, $methods);
+        static::assertCount(1, $methods);
         $this->assertMethodExists(
             $methods,
             'validate',
@@ -34,15 +34,15 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         );
     }
 
-    /** @test */
-    function it_can_load_wsdl_method_with_multiple_response_arguments()
+    
+    public function test_it_can_load_wsdl_method_with_multiple_response_arguments()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/multiArgumentResponse.wsdl'));
 
         $metadata = $this->getMetadataProvider()->getMetadata();
         $methods = $metadata->getMethods();
 
-        $this->assertCount(1, $methods);
+        static::assertCount(1, $methods);
         $this->assertMethodExists(
             $methods,
             'validate',
@@ -53,8 +53,8 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         );
     }
 
-    /** @test */
-    function it_can_load_union_types_in_methods()
+    
+    public function test_it_can_load_union_types_in_methods()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/union.wsdl'));
 
@@ -65,7 +65,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
             ->withBaseType('anyType')
             ->withMemberTypes(['sizebyno', 'sizebystring']);
 
-        $this->assertCount(1, $methods);
+        static::assertCount(1, $methods);
         $this->assertMethodExists(
             $methods,
             'validate',
@@ -76,8 +76,8 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         );
     }
 
-    /** @test */
-    function it_can_load_list_types_in_methods()
+    
+    public function test_it_can_load_list_types_in_methods()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/list.wsdl'));
 
@@ -88,7 +88,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
             ->withBaseType('array')
             ->withMemberTypes(['integer']);
 
-        $this->assertCount(1, $methods);
+        static::assertCount(1, $methods);
         $this->assertMethodExists(
             $methods,
             'validate',
@@ -99,15 +99,15 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         );
     }
 
-    /** @test */
-    function it_can_load_simple_content_types()
+    
+    public function test_it_can_load_simple_content_types()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/simpleContent.wsdl'));
 
         $metadata = $this->getMetadataProvider()->getMetadata();
         $types = $metadata->getTypes();
 
-        $this->assertCount(1, $types);
+        static::assertCount(1, $types);
         $this->assertTypeExists(
             $types,
             XsdType::create('SimpleContent'),
@@ -118,15 +118,15 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         );
     }
 
-    /** @test */
-    function it_can_load_complex_types()
+    
+    public function test_it_can_load_complex_types()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/complex-type-request-response.wsdl'));
 
         $metadata = $this->getMetadataProvider()->getMetadata();
         $types = $metadata->getTypes();
 
-        $this->assertCount(2, $types);
+        static::assertCount(2, $types);
         $this->assertTypeExists(
             $types,
             XsdType::create('ValidateRequest'),
@@ -143,8 +143,8 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         );
     }
 
-    /** @test */
-    function it_can_load_union_types()
+    
+    public function test_it_can_load_union_types()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/union.wsdl'));
 
@@ -155,7 +155,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
             ->withBaseType('anyType')
             ->withMemberTypes(['sizebyno', 'sizebystring']);
 
-        $this->assertCount(1, $types);
+        static::assertCount(1, $types);
         $this->assertTypeExists(
             $types,
             XsdType::create('jeansSizeContainer'),
@@ -165,8 +165,8 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         );
     }
 
-    /** @test */
-    function it_can_load_list_types()
+    
+    public function test_it_can_load_list_types()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/list.wsdl'));
 
@@ -177,7 +177,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
            ->withBaseType('array')
            ->withMemberTypes(['integer']);
 
-        $this->assertCount(1, $types);
+        static::assertCount(1, $types);
         $this->assertTypeExists(
             $types,
             XsdType::create('valuelistContainer'),
@@ -187,40 +187,40 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         );
     }
 
-    /** @test */
-    function it_can_handle_duplicate_type_declarations()
+    
+    public function test_it_can_handle_duplicate_type_declarations()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/duplicate-typenames.wsdl'));
 
         $metadata = $this->getMetadataProvider()->getMetadata();
         $types = $metadata->getTypes();
 
-        $this->assertCount(2, $types);
+        static::assertCount(2, $types);
 
         $type1 = $types->getIterator()[1];
-        $this->assertSame('Store', $type1->getName());
-        $this->assertEquals(XsdType::create('Store'), $type1->getXsdType());
-        $this->assertEquals([new Property('Attribute2', XsdType::create('string'))], [...$type1->getProperties()]);
+        static::assertSame('Store', $type1->getName());
+        static::assertEquals(XsdType::create('Store'), $type1->getXsdType());
+        static::assertEquals([new Property('Attribute2', XsdType::create('string'))], [...$type1->getProperties()]);
 
         $type2 = $types->getIterator()[1];
-        $this->assertSame('Store', $type2->getName());
-        $this->assertEquals(XsdType::create('Store'), $type2->getXsdType());
-        $this->assertEquals([new Property('Attribute2', XsdType::create('string'))], [...$type2->getProperties()]);
+        static::assertSame('Store', $type2->getName());
+        static::assertEquals(XsdType::create('Store'), $type2->getXsdType());
+        static::assertEquals([new Property('Attribute2', XsdType::create('string'))], [...$type2->getProperties()]);
     }
     
     private function assertMethodExists(MethodCollection $methods, string $name, array $parameters, XsdType $returnType)
     {
         $method = $methods->fetchByName($name);
-        $this->assertSame($name, $method->getName());
-        $this->assertEquals($parameters, [...$method->getParameters()]);
-        $this->assertEquals($returnType, $method->getReturnType());
+        static::assertSame($name, $method->getName());
+        static::assertEquals($parameters, [...$method->getParameters()]);
+        static::assertEquals($returnType, $method->getReturnType());
     }
 
     private function assertTypeExists(TypeCollection $types, XsdType $xsdType, array $properties)
     {
         $type = $types->fetchFirstByName($xsdType->getName());
-        $this->assertSame($xsdType->getName(), $type->getName());
-        $this->assertEquals($xsdType->getName(), $type->getXsdType());
-        $this->assertEquals($properties, [...$type->getProperties()]);
+        static::assertSame($xsdType->getName(), $type->getName());
+        static::assertEquals($xsdType->getName(), $type->getXsdType());
+        static::assertEquals($properties, [...$type->getProperties()]);
     }
 }

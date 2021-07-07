@@ -18,13 +18,13 @@ abstract class AbstractEngineTest extends AbstractIntegrationTest
     abstract protected function skipVcr(): bool;
 
     /**
-     * @test
+     *
      * @runInSeparateProcess
      * Note: this method will throw Exceptions if VCR can't take over the configured SoapClient.
      */
-    function it_should_be_possible_to_hook_php_vcr_for_testing()
+    public function test_it_should_be_possible_to_hook_php_vcr_for_testing()
     {
-        $this->runWithCasette('get-city-weather-by-zip-10013.yml', function() {
+        $this->runWithCasette('get-city-weather-by-zip-10013.yml', function () {
             $this->configureForWsdl($this->locateFixture('/wsdl/weather-ws.wsdl'));
             $result = $this->getEngine()->request('GetCityWeatherByZIP', [['ZIP' => '10013']]);
             $this->assertTrue($result->GetCityWeatherByZIPResult->Success);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Soap\EngineIntegrationTests\Type;
 
-class ValidateResponse
+final class ValidateResponse
 {
     public $output;
 }

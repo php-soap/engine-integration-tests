@@ -15,10 +15,11 @@ abstract class AbstractIntegrationTest extends TestCase
 {
     abstract protected function configureForWsdl(string $wsdl);
 
-    protected function locateFixture(string $fixture): string {
+    protected function locateFixture(string $fixture): string
+    {
         $path = __DIR__.'/../fixtures' . $fixture;
 
-        self::assertFileExists($path);
+        static::assertFileExists($path);
 
         return $path;
     }
@@ -28,7 +29,7 @@ abstract class AbstractIntegrationTest extends TestCase
         $body = $xml->locate(new SoapBodyLocator());
         $results = $xml->xpath(new EnvelopePreset($xml))->query($xpath, $body);
 
-        $this->assertGreaterThan(0, $results->count());
+        static::assertGreaterThan(0, $results->count());
 
         return $results;
     }
