@@ -22,15 +22,5 @@
         "php-soap/xml": "dev-main",
         "php-vcr/php-vcr": "^1.5.2",
         "veewee/xml": "^0.6.1"
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../engine"
-        },
-        {
-            "type": "path",
-            "url": "../xml"
-        }
-    ]
+    }
 }
