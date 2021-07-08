@@ -18,8 +18,8 @@
         "php": "^8.0",
         "ext-dom": "*",
         "phpunit/phpunit": "^9.5.6",
-        "php-soap/engine": "dev-main@dev",
-        "php-soap/xml": "dev-main",
+        "php-soap/engine": "^0.1.0",
+        "php-soap/xml": "^0.1.0",
         "php-vcr/php-vcr": "^1.5.2",
         "veewee/xml": "^0.6.1"
     }
