@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97446aa4ef28c0bbe40d78ef912b294e",
+    "content-hash": "35a853431609df67520c34824480e2a5",
     "packages": [
         {
             "name": "azjezz/psl",
@@ -259,16 +259,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.10.5",
+            "version": "v4.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "4432ba399e47c66624bc73c8c0f811e5c109576f"
+                "reference": "fe14cf3672a149364fb66dfe11bf6549af899f94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4432ba399e47c66624bc73c8c0f811e5c109576f",
-                "reference": "4432ba399e47c66624bc73c8c0f811e5c109576f",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/fe14cf3672a149364fb66dfe11bf6549af899f94",
+                "reference": "fe14cf3672a149364fb66dfe11bf6549af899f94",
                 "shasum": ""
             },
             "require": {
@@ -309,9 +309,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.10.5"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.11.0"
             },
-            "time": "2021-05-03T19:11:20+00:00"
+            "time": "2021-07-03T13:36:55+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -426,14 +426,23 @@
         },
         {
             "name": "php-soap/engine",
-            "version": "dev-main",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-soap/engine.git",
+                "reference": "f732595444dacaa88cfa92f88763e035614f99b1"
+            },
             "dist": {
-                "type": "path",
-                "url": "../engine",
-                "reference": "03044f41a699d0b9f99072ed9ed6e509040ecc9f"
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-soap/engine/zipball/f732595444dacaa88cfa92f88763e035614f99b1",
+                "reference": "f732595444dacaa88cfa92f88763e035614f99b1",
+                "shasum": ""
             },
             "require": {
-                "php": "^7.4 || ^8.0"
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "autoload": {
@@ -441,6 +450,7 @@
                     "Soap\\Engine\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -451,22 +461,39 @@
                 }
             ],
             "description": "SOAP engine design",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/php-soap/engine/issues",
+                "source": "https://github.com/php-soap/engine/tree/v0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/veewee",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-07T18:52:28+00:00"
         },
         {
             "name": "php-soap/xml",
-            "version": "dev-main",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-soap/xml.git",
+                "reference": "a8582ec990445fba63b1bb5d2198e407c18895e7"
+            },
             "dist": {
-                "type": "path",
-                "url": "../xml",
-                "reference": "8ff26d4dbae856465aae112b390ca86eaa6304c0"
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-soap/xml/zipball/a8582ec990445fba63b1bb5d2198e407c18895e7",
+                "reference": "a8582ec990445fba63b1bb5d2198e407c18895e7",
+                "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "php": "^8.0",
                 "veewee/xml": "^0.6.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "autoload": {
@@ -474,6 +501,7 @@
                     "Soap\\Xml\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -484,9 +512,17 @@
                 }
             ],
             "description": "XML wrappers for SOAP",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/php-soap/xml/issues",
+                "source": "https://github.com/php-soap/xml/tree/v0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/veewee",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-08T05:31:08+00:00"
         },
         {
             "name": "php-vcr/php-vcr",
@@ -1086,16 +1122,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.6",
+            "version": "9.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb"
+                "reference": "d0dc8b6999c937616df4fb046792004b33fd31c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
-                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d0dc8b6999c937616df4fb046792004b33fd31c5",
+                "reference": "d0dc8b6999c937616df4fb046792004b33fd31c5",
                 "shasum": ""
             },
             "require": {
@@ -1173,7 +1209,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.6"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.7"
             },
             "funding": [
                 {
@@ -1185,7 +1221,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-23T05:14:38+00:00"
+            "time": "2021-07-19T06:14:47+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -2856,10 +2892,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-soap/engine": 20,
-        "php-soap/xml": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
