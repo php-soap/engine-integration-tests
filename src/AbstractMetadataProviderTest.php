@@ -61,7 +61,6 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         $methods = $metadata->getMethods();
 
         $jeansType = XsdType::guess('jeansSize')
-            ->withBaseType('anyType')
             ->withMemberTypes(['sizebyno', 'sizebystring']);
 
         static::assertCount(1, $methods);
@@ -111,7 +110,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
             $types,
             XsdType::guess('SimpleContent'),
             [
-                new Property('_', XsdType::guess('integer')->withBaseType('float')->withMemberTypes(['decimal'])),
+                new Property('_', XsdType::guess('integer')->withMemberTypes(['decimal'])),
                 new Property('country', XsdType::guess('string')),
             ]
         );
@@ -129,14 +128,14 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
             $types,
             XsdType::guess('ValidateRequest'),
             [
-                new Property('input', XsdType::guess('string')->withBaseType('anySimpleType'))
+                new Property('input', XsdType::guess('string'))
             ]
         );
         self::assertTypeExists(
             $types,
             XsdType::guess('ValidateResponse'),
             [
-                new Property('output', XsdType::guess('string')->withBaseType('anySimpleType'))
+                new Property('output', XsdType::guess('string'))
             ]
         );
     }
@@ -149,9 +148,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         $types = $metadata->getTypes();
 
         $jeansType = XsdType::guess('jeansSize')
-            ->withBaseType('anyType')
             ->withMemberTypes(['sizebyno', 'sizebystring']);
-
 
         self::assertTypeExists(
             $types,
@@ -170,8 +167,8 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         $types = $metadata->getTypes();
 
         $listType = XsdType::guess('valuelist')
-           ->withBaseType('array')
-           ->withMemberTypes(['integer']);
+            ->withBaseType('array')
+            ->withMemberTypes(['integer']);
 
         self::assertTypeExists(
             $types,
@@ -195,7 +192,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         static::assertSame('Store', $type1->getName());
         static::assertXsdTypeMatches(XsdType::guess('Store'), $type1->getXsdType());
         static::assertPropertiesMatch(
-            new PropertyCollection(new Property('Attribute2', XsdType::guess('string')->withBaseType('anySimpleType'))),
+            new PropertyCollection(new Property('Attribute2', XsdType::guess('string'))),
             $type1->getProperties()
         );
 
@@ -203,7 +200,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
         static::assertSame('Store', $type2->getName());
         static::assertXsdTypeMatches(XsdType::guess('Store'), $type2->getXsdType());
         static::assertPropertiesMatch(
-            new PropertyCollection(new Property('Attribute2', XsdType::guess('string')->withBaseType('anySimpleType'))),
+            new PropertyCollection(new Property('Attribute2', XsdType::guess('string'))),
             $type2->getProperties()
         );
     }
@@ -257,12 +254,7 @@ abstract class AbstractMetadataProviderTest extends AbstractIntegrationTest
     private static function assertXsdTypeMatches(XsdType $expected, XsdType $actual)
     {
         static::assertSame($expected->getName(), $actual->getName());
-
-        // Base type will be checked optionally:
-        // ext-soap does not have an extended overview of all inherited types.
-        if ($actual->getBaseType()) {
-            static::assertSame($expected->getBaseType(), $actual->getBaseType());
-        }
+        static::assertSame($expected->getBaseType(), $actual->getBaseType());
 
         // Member types will be checked optionally:
         // ext-soap does not have an extended overview of all inherited types.
