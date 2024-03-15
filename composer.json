@@ -21,6 +21,6 @@
         "php-soap/engine": "^1.3 || ^2.0",
         "php-soap/xml": "^1.4",
         "php-vcr/php-vcr": "^1.6.0",
-        "veewee/xml": "^2.2"
+        "veewee/xml": "^2.2 || ^3.0"
     }
 }
