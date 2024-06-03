@@ -7,11 +7,17 @@
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     targetNamespace="http://soapinterop.org/">
 
+    <types>
+        <xsd:schema targetNamespace="http://soapinterop.org/">
+            <xsd:element name="token" type="xsd:token" />
+        </xsd:schema>
+    </types>
+
     <message name="validateRequest">
-        <part name="input" type="xsd:token" />
+        <part name="input" type="token" />
     </message>
     <message name="validateResponse">
-        <part name="output" type="xsd:token" />
+        <part name="output" type="token" />
     </message>
 
     <portType name="InteropTestPortType">

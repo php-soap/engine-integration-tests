@@ -14,7 +14,6 @@ abstract class AbstractDecoderTest extends AbstractIntegrationTest
 {
     abstract protected function getDecoder(): Decoder;
 
-    
     public function test_it_handles_simple_content()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/simpleContent.wsdl'));
@@ -36,7 +35,6 @@ EOB
         );
     }
 
-    
     public function test_it_handles_complex_types()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/complex-type-request-response.wsdl'));
@@ -56,7 +54,6 @@ EOB
         static::assertSame($output, $decoded->output);
     }
 
-    
     public function test_it_handles_complex_types_with_classmap()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/complex-type-mapped-request-response.wsdl'));
@@ -76,7 +73,6 @@ EOB
         static::assertSame($output, $decoded->output);
     }
 
-    
     public function test_it_handles_enum_types()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/enum.wsdl'));
@@ -93,7 +89,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_handles_xml_entities()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/string.wsdl'));
@@ -110,7 +105,6 @@ EOB
         static::assertSame($expectedOutput, $decoded);
     }
 
-    
     public function test_it_decodes_null()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -126,7 +120,6 @@ EOB
         static::assertSame(null, $decoded);
     }
 
-    
     public function test_it_decodes_string()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -143,7 +136,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_long()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -160,7 +152,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_double()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -177,7 +168,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_false()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -193,7 +183,6 @@ EOB
         static::assertSame(false, $decoded);
     }
 
-    
     public function test_it_decodes_true()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -209,7 +198,6 @@ EOB
         static::assertSame(true, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_string()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/string.wsdl'));
@@ -226,7 +214,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_boolean()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/boolean.wsdl'));
@@ -242,7 +229,6 @@ EOB
         static::assertSame(true, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_decimal()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/decimal.wsdl'));
@@ -259,7 +245,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_float()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/float.wsdl'));
@@ -276,7 +261,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_double()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/double.wsdl'));
@@ -293,7 +277,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_long()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/long.wsdl'));
@@ -310,7 +293,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_int()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/int.wsdl'));
@@ -327,7 +309,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_short()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/short.wsdl'));
@@ -344,7 +325,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_byte()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/byte.wsdl'));
@@ -361,7 +341,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_nonpositive_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/nonPositiveInteger.wsdl'));
@@ -378,7 +357,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_positive_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/positiveInteger.wsdl'));
@@ -395,7 +373,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_nonnegative_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/nonNegativeInteger.wsdl'));
@@ -412,7 +389,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_negative_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/negativeInteger.wsdl'));
@@ -429,7 +405,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_unsigned_byte()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/unsignedByte.wsdl'));
@@ -446,7 +421,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_unsigned_short()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/unsignedShort.wsdl'));
@@ -463,7 +437,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_unsigned_int()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/unsignedInt.wsdl'));
@@ -480,7 +453,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_unsigned_long()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/unsignedLong.wsdl'));
@@ -497,7 +469,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/integer.wsdl'));
@@ -514,7 +485,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_datetime()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/datetime.wsdl'));
@@ -532,7 +502,6 @@ EOB
         static::assertSame($output, $decoded->format('Y-m-d\TH:i:s'));
     }
 
-    
     public function test_it_decodes_xsd_time()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/time.wsdl'));
@@ -549,7 +518,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_date()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/date.wsdl'));
@@ -567,7 +535,6 @@ EOB
         static::assertSame($output, $decoded->format('Y-m-d'));
     }
 
-    
     public function test_it_decodes_xsd_gyearmonth()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gYearMonth.wsdl'));
@@ -584,7 +551,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_gyear()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gYear.wsdl'));
@@ -601,7 +567,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_gmonthday()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gMonthDay.wsdl'));
@@ -618,7 +583,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_gday()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gDay.wsdl'));
@@ -635,7 +599,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_gmonth()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gMonth.wsdl'));
@@ -652,7 +615,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_duration()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/duration.wsdl'));
@@ -669,7 +631,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_hexbinary()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/hexBinary.wsdl'));
@@ -687,7 +648,6 @@ EOB
         static::assertSame($expectedOutput, $decoded);
     }
 
-    
     public function test_it_decodes_base64binary()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/base64Binary.wsdl'));
@@ -705,7 +665,6 @@ EOB
         static::assertSame($expectedOutput, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_any_type()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/any.wsdl'));
@@ -722,7 +681,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_any_uri()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/anyURI.wsdl'));
@@ -739,7 +697,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_qname()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/qname.wsdl'));
@@ -756,7 +713,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_notation()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/notation.wsdl'));
@@ -773,7 +729,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_normalized_string()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/normalizedString.wsdl'));
@@ -792,7 +747,6 @@ EOB
         static::assertSame($expected, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_token()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/token.wsdl'));
@@ -811,7 +765,6 @@ EOB
         static::assertSame($expected, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_language()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/token.wsdl'));
@@ -828,7 +781,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_nmtoken()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/nmtoken.wsdl'));
@@ -845,7 +797,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_nmtokens()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/nmtokens.wsdl'));
@@ -862,7 +813,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_name()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/name.wsdl'));
@@ -879,7 +829,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_ncname()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/ncname.wsdl'));
@@ -896,7 +845,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_ncnames()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/ncnames.wsdl'));
@@ -913,7 +861,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_id()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/id.wsdl'));
@@ -930,7 +877,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_idref()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/idref.wsdl'));
@@ -947,7 +893,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_idrefs()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/idrefs.wsdl'));
@@ -964,7 +909,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_entity()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/entity.wsdl'));
@@ -981,7 +925,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_entities()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/entities.wsdl'));
@@ -998,7 +941,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_soap_11_enc_object()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/soap11-enc-object.wsdl'));
@@ -1019,7 +961,6 @@ EOB
         static::assertSame($decoded->Description, 'Description');
     }
 
-    
     public function test_it_decodes_soap_11_enc_array()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/soap11-enc-array.wsdl'));
@@ -1038,7 +979,6 @@ EOB
         static::assertEquals(['string1', 'string2'], $decoded);
     }
 
-    
     public function test_it_decodes_soap_12_enc_object()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/soap12-enc-object.wsdl'));
@@ -1059,7 +999,6 @@ EOB
         static::assertSame($decoded->Description, 'Description');
     }
 
-    
     public function test_it_decodes_soap_12_enc_array()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/soap12-enc-array.wsdl'));
@@ -1078,7 +1017,6 @@ EOB
         static::assertEquals(['string1', 'string2'], $decoded);
     }
 
-    
     public function test_it_decodes_apache_map_array()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/apache-map.wsdl'));
@@ -1099,7 +1037,6 @@ EOB
         static::assertEquals(['Key1' => 'Value1'], $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_string()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999string.wsdl'));
@@ -1116,7 +1053,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_boolean()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999boolean.wsdl'));
@@ -1132,7 +1068,6 @@ EOB
         static::assertSame(true, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_decimal()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999decimal.wsdl'));
@@ -1146,10 +1081,9 @@ EOB
         );
 
         $decoded = $this->getDecoder()->decode('validate', $response);
-        static::assertSame((string) $output, $decoded);
+        static::assertSame((string)$output, (string)$decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_float()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999float.wsdl'));
@@ -1166,7 +1100,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_double()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999double.wsdl'));
@@ -1183,7 +1116,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_long()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999long.wsdl'));
@@ -1200,7 +1132,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_int()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999int.wsdl'));
@@ -1217,7 +1148,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_short()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999short.wsdl'));
@@ -1234,7 +1164,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_byte()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999byte.wsdl'));
@@ -1251,7 +1180,6 @@ EOB
         static::assertSame($output, $decoded);
     }
 
-    
     public function test_it_decodes_xsd_1999_timeinstant()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999timeinstant.wsdl'));
