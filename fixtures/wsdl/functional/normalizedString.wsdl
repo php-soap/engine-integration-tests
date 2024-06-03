@@ -7,11 +7,17 @@
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     targetNamespace="http://soapinterop.org/">
 
+    <types>
+        <xsd:schema targetNamespace="http://soapinterop.org/">
+            <xsd:element name="normalizedString" type="xsd:normalizedString" />
+        </xsd:schema>
+    </types>
+
     <message name="validateRequest">
-        <part name="input" type="xsd:normalizednormalizedString" />
+        <part name="input" type="normalizedString" />
     </message>
     <message name="validateResponse">
-        <part name="output" type="xsd:normalizedString" />
+        <part name="output" type="normalizedString" />
     </message>
 
     <portType name="InteropTestPortType">

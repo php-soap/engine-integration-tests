@@ -17,7 +17,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
 
     abstract protected function getEncoder(): Encoder;
 
-    
     public function test_it_handles_simple_content()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/simpleContent.wsdl'));
@@ -32,7 +31,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('BE', $result->getAttribute('country'));
     }
 
-    
     public function test_it_handles_complex_types()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/complex-type-request-response.wsdl'));
@@ -46,7 +44,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input->input, $result->nodeValue);
     }
 
-    
     public function test_it_handles_complex_types_with_classmap()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/complex-type-mapped-request-response.wsdl'));
@@ -61,13 +58,11 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input->input, $result->nodeValue);
     }
 
-    
     public function test_it_handles_enum_types()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/enum.wsdl'));
         $input = 'Home';
         $encoded = $this->getEncoder()->encode($method = 'validate', [$input]);
-
         $xml = Document::fromXmlString($encoded->getRequest());
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
@@ -75,7 +70,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_handles_xml_entities()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/string.wsdl'));
@@ -86,11 +80,10 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertStringContainsString(htmlspecialchars($input, ENT_NOQUOTES), $encoded->getRequest());
+        static::assertStringNotContainsString($input, $encoded->getRequest());
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_null()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -104,7 +97,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_string()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -118,7 +110,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_long()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -132,7 +123,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_double()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -146,7 +136,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_false()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -160,7 +149,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('false', $result->nodeValue);
     }
 
-    
     public function test_it_encodes_true()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/guess.wsdl'));
@@ -174,7 +162,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('true', $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_string()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/string.wsdl'));
@@ -187,7 +174,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('input', $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_boolean()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/boolean.wsdl'));
@@ -201,7 +187,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('true', $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_decimal()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/decimal.wsdl'));
@@ -215,7 +200,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_float()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/float.wsdl'));
@@ -229,7 +213,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_double()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/double.wsdl'));
@@ -243,7 +226,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_long()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/long.wsdl'));
@@ -257,12 +239,12 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_int()
     {
-        $this->configureForWsdl($this->locateFixture('/wsdl/functional/string.wsdl'));
+        $this->configureForWsdl($this->locateFixture('/wsdl/functional/int.wsdl'));
 
         $encoded = $this->getEncoder()->encode($method = 'validate', [$input = 123]);
+
         $xml = Document::fromXmlString($encoded->getRequest());
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
@@ -270,7 +252,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_short()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/short.wsdl'));
@@ -283,7 +264,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_byte()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/byte.wsdl'));
@@ -296,7 +276,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_nonpositive_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/nonPositiveInteger.wsdl'));
@@ -309,7 +288,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_positive_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/positiveInteger.wsdl'));
@@ -322,7 +300,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_nonnegative_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/nonNegativeInteger.wsdl'));
@@ -335,7 +312,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_negative_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/negativeInteger.wsdl'));
@@ -348,7 +324,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_unsigned_byte()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/unsignedByte.wsdl'));
@@ -361,7 +336,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_unsigned_short()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/unsignedShort.wsdl'));
@@ -374,7 +348,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_unsigned_int()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/unsignedInt.wsdl'));
@@ -387,7 +360,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_unsigned_long()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/unsignedLong.wsdl'));
@@ -400,7 +372,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_integer()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/integer.wsdl'));
@@ -413,7 +384,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_datetime()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/datetime.wsdl'));
@@ -427,7 +397,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input->format('Y-m-d\TH:i:sP'), $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_time()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/time.wsdl'));
@@ -440,7 +409,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_date()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/date.wsdl'));
@@ -454,7 +422,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input->format('Y-m-d'), $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_gyearmonth()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gYearMonth.wsdl'));
@@ -467,7 +434,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_gyear()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gYear.wsdl'));
@@ -480,7 +446,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_gmonthday()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gYearMonth.wsdl'));
@@ -493,7 +458,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_gday()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gDay.wsdl'));
@@ -506,7 +470,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_gmonth()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/gMonth.wsdl'));
@@ -519,7 +482,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_duration()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/duration.wsdl'));
@@ -532,7 +494,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_hexbinary()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/hexBinary.wsdl'));
@@ -546,7 +507,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals(strtoupper(bin2hex($input)), $result->nodeValue);
     }
 
-    
     public function test_it_encodes_base64binary()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/base64Binary.wsdl'));
@@ -560,7 +520,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals(base64_encode($input), $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_any_type_by_guessing()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/any.wsdl'));
@@ -573,7 +532,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_any_uri()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/anyURI.wsdl'));
@@ -586,7 +544,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_qname()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/qname.wsdl'));
@@ -600,7 +557,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_notation()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/notation.wsdl'));
@@ -614,7 +570,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_normalized_string()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/normalizedString.wsdl'));
@@ -629,7 +584,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_token()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/token.wsdl'));
@@ -644,7 +598,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_language()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/language.wsdl'));
@@ -657,7 +610,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_nmtoken()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/nmtoken.wsdl'));
@@ -671,7 +623,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_nmtokens()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/nmtokens.wsdl'));
@@ -685,7 +636,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_name()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/name.wsdl'));
@@ -699,7 +649,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_ncname()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/ncname.wsdl'));
@@ -713,7 +662,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_id()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/id.wsdl'));
@@ -727,7 +675,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_idref()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/idref.wsdl'));
@@ -741,7 +688,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_idrefs()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/idrefs.wsdl'));
@@ -755,7 +701,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_entity()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/entity.wsdl'));
@@ -769,7 +714,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_entities()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/entities.wsdl'));
@@ -783,11 +727,10 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_soap_11_enc_object()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/soap11-enc-object.wsdl'));
-        $input = (object) ['Sku' => 50, 'Description' => 'Description'];
+        $input = (object)['Sku' => 50, 'Description' => 'Description'];
         $encoded = $this->getEncoder()->encode($method = 'validate', [$input]);
 
         $xml = Document::fromXmlString($encoded->getRequest());
@@ -802,7 +745,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('xsd:string', $description->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
-    
     public function test_it_encodes_soap_11_enc_array()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/soap11-enc-array.wsdl'));
@@ -821,11 +763,10 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('xsd:string', $item2->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
-    
     public function test_it_encodes_soap_12_enc_object()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/soap12-enc-object.wsdl'));
-        $input = (object) ['Sku' => 50, 'Description' => 'Description'];
+        $input = (object)['Sku' => 50, 'Description' => 'Description'];
         $encoded = $this->getEncoder()->encode($method = 'validate', [$input]);
 
         $xml = Document::fromXmlString($encoded->getRequest());
@@ -840,7 +781,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('xsd:string', $description->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
-    
     public function test_it_encodes_soap_12_enc_array()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/soap12-enc-array.wsdl'));
@@ -859,7 +799,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('xsd:string', $item2->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
-    
     public function test_it_encodes_apache_map_array()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/apache-map.wsdl'));
@@ -881,7 +820,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('xsd:string', $item1Value->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
-    
     public function test_it_encodes_xsd_1999_string()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999string.wsdl'));
@@ -894,7 +832,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_boolean()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999boolean.wsdl'));
@@ -907,7 +844,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals('true', $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_decimal()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999decimal.wsdl'));
@@ -920,7 +856,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_float()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999float.wsdl'));
@@ -933,7 +868,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_double()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999double.wsdl'));
@@ -946,7 +880,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_long()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999long.wsdl'));
@@ -959,7 +892,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_int()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999int.wsdl'));
@@ -972,7 +904,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_short()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999short.wsdl'));
@@ -985,7 +916,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_byte()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999byte.wsdl'));
@@ -998,7 +928,6 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertEquals($input, $result->nodeValue);
     }
 
-    
     public function test_it_encodes_xsd_1999_timeinstant()
     {
         $this->configureForWsdl($this->locateFixture('/wsdl/functional/1999timeinstant.wsdl'));
@@ -1021,7 +950,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
     {
         $bodyNamespace = $xml->locate(new BodyNamespaceLocator());
         static::assertEquals($bodyNamespace, $request->getLocation());
-        static::assertEquals(rtrim($bodyNamespace, '/').'/'.$method, $request->getAction());
+        static::assertEquals(rtrim($bodyNamespace, '/') . '/' . $method, $request->getAction());
         static::assertTrue($request->isSOAP11() || $request->isSOAP12());
         static::assertEquals(0, $request->getOneWay());
     }
