@@ -678,7 +678,7 @@ EOB
         );
 
         $decoded = $this->getDecoder()->decode('validate', $response);
-        static::assertSame($output, $decoded);
+        static::assertSame($output, (string) $decoded);
     }
 
     public function test_it_decodes_xsd_any_uri()
