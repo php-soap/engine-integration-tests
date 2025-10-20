@@ -15,12 +15,15 @@
         }
     ],
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+        "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
         "ext-dom": "*",
-        "phpunit/phpunit": "^10.5.0 || ^11.0",
-        "php-soap/engine": "^2.13",
-        "php-soap/xml": "^1.8",
+        "phpunit/phpunit": "~12.3",
+        "php-soap/engine": "^2.16",
+        "php-soap/xml": "^1.9",
         "php-vcr/php-vcr": "^1.6.0",
         "veewee/xml": "^3.0"
+    },
+    "require-dev": {
+        "php-cs-fixer/shim": "~3.88"
     }
 }
