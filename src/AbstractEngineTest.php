@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Soap\EngineIntegrationTests;
 
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Soap\Engine\Engine;
 use VCR\VCR;
 
@@ -17,11 +18,7 @@ abstract class AbstractEngineTest extends AbstractIntegrationTest
      */
     abstract protected function skipVcr(): bool;
 
-    /**
-     *
-     * @runInSeparateProcess
-     * Note: this method will throw Exceptions if VCR can't take over the configured SoapClient.
-     */
+    #[RunInSeparateProcess]
     public function test_it_should_be_possible_to_hook_php_vcr_for_testing()
     {
         $this->runWithCasette('get-city-weather-by-zip-10013.yml', function () {
