@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Soap\EngineIntegrationTests;
 
-use DOMElement;
+use Dom\Element;
 use PHPUnit\Framework\TestCase;
 use Soap\Xml\Locator\SoapBodyLocator;
 use Soap\Xml\Xpath\EnvelopePreset;
@@ -34,7 +34,7 @@ abstract class AbstractIntegrationTest extends TestCase
         return $results;
     }
 
-    protected function runSingleElementXpathOnBody(Document $xml, string $xpath): DOMElement
+    protected function runSingleElementXpathOnBody(Document $xml, string $xpath): Element
     {
         $body = $xml->locate(new SoapBodyLocator());
 

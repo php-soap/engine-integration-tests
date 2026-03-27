@@ -15,13 +15,13 @@
         }
     ],
     "require": {
-        "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+        "php": "~8.4.0 || ~8.5.0",
         "ext-dom": "*",
         "phpunit/phpunit": "~12.3",
         "php-soap/engine": "^2.16",
         "php-soap/xml": "^1.9",
         "php-vcr/php-vcr": "^1.6.0",
-        "veewee/xml": "^3.0"
+        "veewee/xml": "^4.8"
     },
     "require-dev": {
         "php-cs-fixer/shim": "~3.88"
