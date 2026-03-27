@@ -27,7 +27,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals(132, $result->nodeValue);
+        static::assertEquals(132, $result->textContent);
         static::assertEquals('BE', $result->getAttribute('country'));
     }
 
@@ -41,7 +41,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/request/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input->input, $result->nodeValue);
+        static::assertEquals($input->input, $result->textContent);
     }
 
     public function test_it_handles_complex_types_with_classmap()
@@ -55,7 +55,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/request/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input->input, $result->nodeValue);
+        static::assertEquals($input->input, $result->textContent);
     }
 
     public function test_it_handles_enum_types()
@@ -67,7 +67,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_handles_xml_entities()
@@ -81,7 +81,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
 
         $this->assertSoapRequest($encoded, $xml, $method);
         static::assertStringNotContainsString($input, $encoded->getRequest());
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_null()
@@ -94,7 +94,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_string()
@@ -107,7 +107,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_long()
@@ -120,7 +120,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_double()
@@ -133,7 +133,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_false()
@@ -146,7 +146,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals('false', $result->nodeValue);
+        static::assertEquals('false', $result->textContent);
     }
 
     public function test_it_encodes_true()
@@ -159,7 +159,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals('true', $result->nodeValue);
+        static::assertEquals('true', $result->textContent);
     }
 
     public function test_it_encodes_xsd_string()
@@ -171,7 +171,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals('input', $result->nodeValue);
+        static::assertEquals('input', $result->textContent);
     }
 
     public function test_it_encodes_xsd_boolean()
@@ -184,7 +184,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals('true', $result->nodeValue);
+        static::assertEquals('true', $result->textContent);
     }
 
     public function test_it_encodes_xsd_decimal()
@@ -197,7 +197,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/*[1]');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_float()
@@ -210,7 +210,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_double()
@@ -223,7 +223,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/*[1]');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_long()
@@ -236,7 +236,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_int()
@@ -249,7 +249,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_short()
@@ -261,7 +261,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_byte()
@@ -273,7 +273,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_nonpositive_integer()
@@ -285,7 +285,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_positive_integer()
@@ -297,7 +297,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_nonnegative_integer()
@@ -309,7 +309,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_negative_integer()
@@ -321,7 +321,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_unsigned_byte()
@@ -333,7 +333,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_unsigned_short()
@@ -345,7 +345,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_unsigned_int()
@@ -357,7 +357,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_unsigned_long()
@@ -369,7 +369,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_integer()
@@ -381,7 +381,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_datetime()
@@ -394,7 +394,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/*[1]');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input->format('Y-m-d\TH:i:sP'), $result->nodeValue);
+        static::assertEquals($input->format('Y-m-d\TH:i:sP'), $result->textContent);
     }
 
     public function test_it_encodes_xsd_time()
@@ -406,7 +406,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_date()
@@ -419,7 +419,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/*[1]');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input->format('Y-m-d'), $result->nodeValue);
+        static::assertEquals($input->format('Y-m-d'), $result->textContent);
     }
 
     public function test_it_encodes_xsd_gyearmonth()
@@ -431,7 +431,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_gyear()
@@ -443,7 +443,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_gmonthday()
@@ -455,7 +455,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_gday()
@@ -467,7 +467,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_gmonth()
@@ -479,7 +479,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_duration()
@@ -491,7 +491,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_hexbinary()
@@ -504,7 +504,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals(strtoupper(bin2hex($input)), $result->nodeValue);
+        static::assertEquals(strtoupper(bin2hex($input)), $result->textContent);
     }
 
     public function test_it_encodes_base64binary()
@@ -517,7 +517,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals(base64_encode($input), $result->nodeValue);
+        static::assertEquals(base64_encode($input), $result->textContent);
     }
 
     public function test_it_encodes_xsd_any_type_by_guessing()
@@ -529,7 +529,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_any_uri()
@@ -541,7 +541,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_qname()
@@ -554,7 +554,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_notation()
@@ -567,7 +567,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_normalized_string()
@@ -581,7 +581,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_token()
@@ -595,7 +595,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_language()
@@ -607,7 +607,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_nmtoken()
@@ -620,7 +620,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_nmtokens()
@@ -633,7 +633,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_name()
@@ -646,7 +646,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_ncname()
@@ -659,7 +659,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_id()
@@ -672,7 +672,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_idref()
@@ -685,7 +685,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_idrefs()
@@ -698,7 +698,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_entity()
@@ -711,7 +711,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_entities()
@@ -724,7 +724,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_soap_11_enc_object()
@@ -737,11 +737,11 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $this->assertSoapRequest($encoded, $xml, $method);
 
         $sku = $this->runSingleElementXpathOnBody($xml, './application:validate/request/Sku');
-        static::assertEquals($input->Sku, $sku->nodeValue);
+        static::assertEquals($input->Sku, $sku->textContent);
         static::assertEquals('xsd:int', $sku->getAttributeNS(self::XML_XSI_NS, 'type'));
 
         $description = $this->runSingleElementXpathOnBody($xml, './application:validate/request/Description');
-        static::assertEquals($input->Description, $description->nodeValue);
+        static::assertEquals($input->Description, $description->textContent);
         static::assertEquals('xsd:string', $description->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
@@ -755,11 +755,11 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $this->assertSoapRequest($encoded, $xml, $method);
 
         $item1 = $this->runSingleElementXpathOnBody($xml, './application:validate/request/item[1]');
-        static::assertEquals($input[0], $item1->nodeValue);
+        static::assertEquals($input[0], $item1->textContent);
         static::assertEquals('xsd:string', $item1->getAttributeNS(self::XML_XSI_NS, 'type'));
 
         $item2 = $this->runSingleElementXpathOnBody($xml, './application:validate/request/item[2]');
-        static::assertEquals($input[1], $item2->nodeValue);
+        static::assertEquals($input[1], $item2->textContent);
         static::assertEquals('xsd:string', $item2->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
@@ -773,11 +773,11 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $this->assertSoapRequest($encoded, $xml, $method);
 
         $sku = $this->runSingleElementXpathOnBody($xml, './application:validate/request/Sku');
-        static::assertEquals($input->Sku, $sku->nodeValue);
+        static::assertEquals($input->Sku, $sku->textContent);
         static::assertEquals('xsd:int', $sku->getAttributeNS(self::XML_XSI_NS, 'type'));
 
         $description = $this->runSingleElementXpathOnBody($xml, './application:validate/request/Description');
-        static::assertEquals($input->Description, $description->nodeValue);
+        static::assertEquals($input->Description, $description->textContent);
         static::assertEquals('xsd:string', $description->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
@@ -791,11 +791,11 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $this->assertSoapRequest($encoded, $xml, $method);
 
         $item1 = $this->runSingleElementXpathOnBody($xml, './application:validate/request/item[1]');
-        static::assertEquals($input[0], $item1->nodeValue);
+        static::assertEquals($input[0], $item1->textContent);
         static::assertEquals('xsd:string', $item1->getAttributeNS(self::XML_XSI_NS, 'type'));
 
         $item2 = $this->runSingleElementXpathOnBody($xml, './application:validate/request/item[2]');
-        static::assertEquals($input[1], $item2->nodeValue);
+        static::assertEquals($input[1], $item2->textContent);
         static::assertEquals('xsd:string', $item2->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
@@ -812,11 +812,11 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         static::assertStringContainsString(':Map', $requestItem->getAttributeNS(self::XML_XSI_NS, 'type'));
 
         $item1Key = $this->runSingleElementXpathOnBody($xml, './application:validate/request/item[1]/key');
-        static::assertEquals('key1', $item1Key->nodeValue);
+        static::assertEquals('key1', $item1Key->textContent);
         static::assertEquals('xsd:string', $item1Key->getAttributeNS(self::XML_XSI_NS, 'type'));
 
         $item1Value = $this->runSingleElementXpathOnBody($xml, './application:validate/request/item[1]/value');
-        static::assertEquals($input['key1'], $item1Value->nodeValue);
+        static::assertEquals($input['key1'], $item1Value->textContent);
         static::assertEquals('xsd:string', $item1Value->getAttributeNS(self::XML_XSI_NS, 'type'));
     }
 
@@ -829,7 +829,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_boolean()
@@ -841,7 +841,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals('true', $result->nodeValue);
+        static::assertEquals('true', $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_decimal()
@@ -853,7 +853,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_float()
@@ -865,7 +865,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_double()
@@ -877,7 +877,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_long()
@@ -889,7 +889,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_int()
@@ -901,7 +901,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_short()
@@ -913,7 +913,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_byte()
@@ -925,7 +925,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     public function test_it_encodes_xsd_1999_timeinstant()
@@ -937,7 +937,7 @@ abstract class AbstractEncoderTest extends AbstractIntegrationTest
         $result = $this->runSingleElementXpathOnBody($xml, './application:validate/input');
 
         $this->assertSoapRequest($encoded, $xml, $method);
-        static::assertEquals($input, $result->nodeValue);
+        static::assertEquals($input, $result->textContent);
     }
 
     /**
